@@ -7,8 +7,11 @@
 
 	function calculate(initialExpression: string): string {
 		const expression = initialExpression
+			.toLowerCase()
 			.replace(/up\((.*?)\)/g, 'Math.ceil($1)')
 			.replace(/down\((.*?)\)/g, 'Math.floor($1)')
+			.replace('pi', 'Math.PI')
+			.replace('^', '**')
 			.slice(1);
 
 		const fieldNames: string[] = expression.match(ID_FORMAT) || [];
