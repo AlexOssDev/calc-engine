@@ -8,5 +8,5 @@
 <h2>{data.name}</h2>
 
 {#each data.rows as row}
-	<Row bind:data={row} />
+	<Row bind:data={row} stack={data} />
 {/each}

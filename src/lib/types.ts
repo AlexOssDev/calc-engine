@@ -1,4 +1,4 @@
-export const ID_FORMAT = /[a-zA-Z]\d+/;
+export const ID_FORMAT = /([a-zA-Z]\d+)/g;
 
 export interface IStack {
 	name: string;

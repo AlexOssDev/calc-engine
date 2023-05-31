@@ -1,7 +1,31 @@
 <script lang="ts">
-	import type { IRow } from './types';
+	import { ID_FORMAT, type IRow, type IStack } from './types';
+	import { locateField } from './utils';
 
 	export let data: IRow;
+	export let stack: IStack;
+
+	function calculate(initialExpression: string): string {
+		const expression = initialExpression
+			.replace(/up\((.*?)\)/g, 'Math.ceil($1)')
+			.replace(/down\((.*?)\)/g, 'Math.floor($1)')
+			.slice(1);
+
+		const fieldNames: string[] = expression.match(ID_FORMAT) || [];
+		const fields: { name: string; value: any }[] = fieldNames.map((fieldName) => ({
+			name: fieldName,
+			value: locateField(fieldName, stack)?.value
+		}));
+
+		const finalFunction = expression.replace(
+			ID_FORMAT,
+			(_, name) => fields.find((field) => field.name == name)?.value || 0
+		);
+
+		console.log(finalFunction);
+
+		return eval(finalFunction);
+	}
 </script>
 
 <h3>{data.label}</h3>
@@ -12,7 +36,7 @@
 			{#if label}
 				<span>{label}</span>
 			{/if}
-			<span>{value}</span>
+			<span>{calculate(value)}</span>
 		</div>
 	{:else}
 		<div>
