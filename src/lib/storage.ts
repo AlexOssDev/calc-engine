@@ -34,13 +34,23 @@ function createStacks() {
 
 	const { subscribe, set, update } = writable<IStack[]>(load() || initialData);
 
+	const deleteByName = (data: IStack[], item: IStack, dontSave?: boolean) => {
+		const filtered = data.filter((stack) => {
+			console.log(stack.name, '!=', item.name, 'is', stack.name !== item.name);
+			return stack.name !== item.name;
+		});
+		dontSave || save(filtered);
+		return filtered;
+	};
+
 	return {
 		subscribe,
 		push: (item: IStack) =>
 			update((data) => {
-				data.push(item);
-				save(data);
-				return data;
+				const filtered = deleteByName(data, item, true);
+				filtered.push(item);
+				save(filtered);
+				return filtered;
 			}),
 		pop: (): IStack | null => {
 			let lastItem: IStack | undefined;
@@ -59,12 +69,6 @@ function createStacks() {
 				save(data);
 				return data;
 			}),
-		delete: (item: IStack) => {
-			update((data) => {
-				data = data.filter((stack) => stack.name != item.name);
-				save(data);
-				return data;
-			});
-		}
+		delete: (item: IStack) => update((data) => deleteByName(data, item))
 	};
 }

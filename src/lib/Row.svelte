@@ -25,8 +25,6 @@
 			(_, name) => fields.find((field) => field.name == name)?.value || 0
 		);
 
-		console.log(finalFunction);
-
 		return eval(finalFunction);
 	}
 </script>

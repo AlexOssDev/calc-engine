@@ -1,3 +1,4 @@
+import { dataStore } from './storage';
 import { ID_FORMAT, type IField, type IStack } from './types';
 
 const CHARCODE_FOR_A = 97;
