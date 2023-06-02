@@ -5,8 +5,11 @@
 	export let data: IStack;
 </script>
 
-<h2>{data.name}</h2>
-
-{#each data.rows as row}
-	<Row bind:data={row} stack={data} />
-{/each}
+{#if !data.hidden}
+	<div>
+		<h2>{data.name}</h2>
+		{#each data.rows as row}
+			<Row bind:data={row} stack={data} />
+		{/each}
+	</div>
+{/if}
