@@ -54,7 +54,7 @@
 					<span>{label}</span>
 				{/if}
 				<span
-					class="m-1 box-border block w-full rounded-lg border-2 border-sky-400 p-1 text-center align-bottom dark:border-sky-300 dark:bg-slate-800"
+					class="m-1 box-border block w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center align-bottom dark:border-sky-300 dark:bg-slate-800"
 					>{calculate(value)}</span
 				>
 			{:else if label}
@@ -63,14 +63,14 @@
 					<input
 						type="number"
 						bind:value
-						class="m-1 box-border block w-full rounded-lg border-2 border-gray-900 p-1 text-center align-bottom focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+						class="m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center align-bottom focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 					/>
 				</label>
 			{:else}
 				<input
 					type="number"
 					bind:value
-					class="m-1 box-border block w-full rounded-lg border-2 border-gray-900 p-1 text-center align-bottom focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+					class="m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center align-bottom focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 				/>
 			{/if}
 		{/each}
