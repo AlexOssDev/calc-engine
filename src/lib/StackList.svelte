@@ -4,7 +4,7 @@
 
 <ul>
 	{#each $dataStore as stack}
-		<li class="m-3 flex justify-between gap-3">
+		<li class="m-3 flex justify-between gap-3 first:mt-0">
 			<button class="w-full text-left" on:click={() => (stack.hidden = !stack.hidden)}>
 				{stack.name}
 			</button>
