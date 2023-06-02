@@ -10,7 +10,8 @@ const initialData: IStack[] = [
 				fields: [{ label: 'x', value: 20 }, { value: 40 }]
 			},
 			{ label: 'result', fields: [{ value: '=up(A1 * A2)' }] }
-		]
+		],
+		hidden: true
 	},
 	{
 		name: 'Area of a circle',
@@ -20,7 +21,8 @@ const initialData: IStack[] = [
 				fields: [{ value: 20 }]
 			},
 			{ label: 'area', fields: [{ value: '=pi * A1^2' }] }
-		]
+		],
+		hidden: true
 	}
 ];
 
