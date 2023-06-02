@@ -8,10 +8,10 @@
 	function calculate(initialExpression: string): string {
 		const expression = initialExpression
 			.toLowerCase()
-			.replace(/up\((.*?)\)/g, 'Math.ceil($1)')
-			.replace(/down\((.*?)\)/g, 'Math.floor($1)')
-			.replace('pi', 'Math.PI')
-			.replace('^', '**')
+			.replaceAll('up(', 'Math.ceil(')
+			.replaceAll('down(', 'Math.floor(')
+			.replaceAll('pi', 'Math.PI')
+			.replaceAll('^', '**')
 			.slice(1);
 
 		const fieldNames: string[] = expression.match(ID_FORMAT) || [];
