@@ -2,4 +2,6 @@
 	import '../app.css';
 </script>
 
-<slot />
+<div class="md:flex md:justify-between">
+	<slot />
+</div>

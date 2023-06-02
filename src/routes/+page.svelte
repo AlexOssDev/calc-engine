@@ -26,6 +26,11 @@
 
 <StackList />
 
-{#each $dataStore as stack}
-	<Stack bind:data={stack} />
-{/each}
+<main class="md:p-2">
+	{#each $dataStore as stack}
+		<Stack bind:data={stack} />
+	{/each}
+</main>
+
+<!-- this is just to get everything centered -->
+<span />

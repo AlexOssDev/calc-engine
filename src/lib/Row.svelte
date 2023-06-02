@@ -29,26 +29,42 @@
 	}
 </script>
 
-<h3>{data.label}</h3>
+<div class="mb-4 md:flex md:justify-between md:gap-4">
+	<h3 class="ml-1 text-center text-lg md:my-auto md:text-left">{data.label}</h3>
 
-{#each data.fields as { label, value }}
-	{#if typeof value === 'string' && value[0] === '='}
-		<div>
-			{#if label}
-				<span>{label}</span>
-			{/if}
-			<span>{calculate(value)}</span>
-		</div>
-	{:else}
-		<div>
-			{#if label}
-				<label>
+	<div class="flex gap-1 md:w-8/12">
+		{#each data.fields as { label, value }}
+			{#if typeof value === 'string' && value[0] === '='}
+				{#if label}
+					<span>{label}</span>
+				{/if}
+				<span
+					class="m-1 box-border block w-full rounded-lg border-2 border-sky-400 p-1 align-bottom"
+					>{calculate(value)}</span
+				>
+			{:else if label}
+				<label class="w-full text-center">
 					{label}
-					<input type="number" bind:value />
+					<input
+						type="number"
+						bind:value
+						class="m-1 box-border block w-full rounded-lg border-2 border-gray-900 p-1 align-bottom"
+					/>
 				</label>
 			{:else}
-				<input type="number" bind:value />
+				<input
+					type="number"
+					bind:value
+					class="m-1 box-border block w-full rounded-lg border-2 border-gray-900 p-1 align-bottom"
+				/>
 			{/if}
-		</div>
-	{/if}
-{/each}
+		{/each}
+	</div>
+</div>
+
+<style>
+	input {
+		-moz-appearance: textfield;
+		-webkit-appearance: none;
+	}
+</style>
