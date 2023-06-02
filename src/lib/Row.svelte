@@ -6,26 +6,41 @@
 	export let stack: IStack;
 
 	function calculate(initialExpression: string): string {
-		const expression = initialExpression
-			.toLowerCase()
+		let expression = initialExpression.toLowerCase().slice(1);
+		let depth = 0;
+
+		while (expression.match(ID_FORMAT)) {
+			expression = insertFieldValuesIntoExpression(expression);
+			depth++;
+			console.log(expression, depth);
+
+			if (depth > 100) return "couldn't process, sorry :(";
+		}
+
+		expression = expression
 			.replaceAll('up(', 'Math.ceil(')
 			.replaceAll('down(', 'Math.floor(')
 			.replaceAll('pi', 'Math.PI')
-			.replaceAll('^', '**')
-			.slice(1);
+			.replaceAll('^', '**');
 
+		console.log('final', expression);
+
+		return eval(expression);
+	}
+
+	function insertFieldValuesIntoExpression(expression: string): string {
 		const fieldNames: string[] = expression.match(ID_FORMAT) || [];
 		const fields: { name: string; value: any }[] = fieldNames.map((fieldName) => ({
 			name: fieldName,
 			value: locateField(fieldName, stack)?.value
 		}));
 
-		const finalFunction = expression.replace(
-			ID_FORMAT,
-			(_, name) => fields.find((field) => field.name == name)?.value || 0
-		);
+		const finalFunction = expression.replace(ID_FORMAT, (_, name) => {
+			const value = fields.find((field) => field.name == name)?.value || 0;
+			return String(value).replace(/^=/m, '');
+		});
 
-		return eval(finalFunction);
+		return finalFunction;
 	}
 </script>
 
