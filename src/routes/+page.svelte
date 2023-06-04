@@ -29,6 +29,9 @@
 <main class="mt-0 md:p-2">
 	{#each $dataStore as stack}
 		<Stack bind:data={stack} />
+	{:else}
+		<h2 class="text-2xl text-center">No stacks yet!</h2>
+		<p class="text-center">Enable or import some!</p>
 	{/each}
 </main>
 

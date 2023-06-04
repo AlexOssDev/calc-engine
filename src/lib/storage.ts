@@ -1,33 +1,7 @@
 import { writable } from 'svelte/store';
 import type { IStack } from './types';
 
-const initialData: IStack[] = [
-	{
-		name: 'Area of a rectangle',
-		rows: [
-			{
-				label: 'dimensions',
-				fields: [{ label: 'x', value: 20 }, { value: 40 }]
-			},
-			{ label: 'result', fields: [{ value: '=up(A1 * A2)' }] },
-			{
-				label: 'N',
-				fields: [{ disabledValue: 0, value: 10, disabled: true }]
-			},
-			{ label: 'that + N', fields: [{ value: '=B1+C1' }] }
-		]
-	},
-	{
-		name: 'Area of a circle',
-		rows: [
-			{
-				label: 'radius',
-				fields: [{ value: 20 }]
-			},
-			{ label: 'area', fields: [{ value: '=pi * A1^2' }] }
-		]
-	}
-];
+const initialData: IStack[] = [];
 
 export const dataStore = createStacks();
 
