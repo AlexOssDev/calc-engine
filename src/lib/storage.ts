@@ -10,7 +10,11 @@ const initialData: IStack[] = [
 				fields: [{ label: 'x', value: 20 }, { value: 40 }]
 			},
 			{ label: 'result', fields: [{ value: '=up(A1 * A2)' }] },
-			{ label: 'that + 42', fields: [{ value: '=B1+42' }] }
+			{
+				label: 'N',
+				fields: [{ disabledValue: 0, value: 10, disabled: true }]
+			},
+			{ label: 'that + N', fields: [{ value: '=B1+C1' }] }
 		]
 	},
 	{

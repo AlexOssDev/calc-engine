@@ -13,3 +13,9 @@ export function locateField(id: string, stack: IStack): IField | null {
 
 	return stack?.rows[row]?.fields[column] || null;
 }
+
+export function getFieldsValue(fieldId: string, stack: IStack): any {
+	const field = locateField(fieldId, stack);
+
+	return field?.disabled ? field.disabledValue : field?.value;
+}

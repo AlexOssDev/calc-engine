@@ -15,4 +15,6 @@ export interface IRow {
 export interface IField {
 	label?: string;
 	value?: any;
+	disabled?: boolean;
+	disabledValue?: any;
 }
