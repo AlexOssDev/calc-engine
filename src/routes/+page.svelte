@@ -24,7 +24,7 @@
 	if (params) window.location.search = '';
 </script>
 
-<!-- <StackList /> -->
+<StackList />
 
 <main class="mt-0 md:p-2">
 	{#each $dataStore as stack}
@@ -33,10 +33,4 @@
 </main>
 
 <!-- this is just to get everything centered -->
-<!-- <span /> -->
-
-<pre class="h-screen w-full overflow-y-auto bg-black text-green-400">{JSON.stringify(
-		$dataStore,
-		undefined,
-		4
-	)}</pre>
+<span />
