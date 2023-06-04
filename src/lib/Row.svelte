@@ -63,14 +63,14 @@
 					<input
 						type="number"
 						bind:value
-						class="m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center align-bottom focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+						class="m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center align-bottom transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 					/>
 				</label>
 			{:else}
 				<input
 					type="number"
 					bind:value
-					class="m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center align-bottom focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+					class="m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center align-bottom transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 				/>
 			{/if}
 		{/each}
