@@ -56,7 +56,7 @@
 						<span class="text-center">{label}</span>
 					{/if}
 					<span
-						class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
+						class="m-1 box-border block h-9 w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
 						>{calculate(value).replace(/(\d+\.\d{2})\d+/, '$1')}</span
 					>
 				</div>
@@ -78,14 +78,14 @@
 						{/if}
 						{#if disabled}
 							<span
-								class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
+								class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
 								>{disabledValue}</span
 							>
 						{:else}
 							<input
 								type="number"
 								bind:value
-								class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+								class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 							/>
 						{/if}
 					</div>
@@ -106,14 +106,14 @@
 					{/if}
 					{#if disabled}
 						<span
-							class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
+							class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
 							>{disabledValue}</span
 						>
 					{:else}
 						<input
 							type="number"
 							bind:value
-							class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+							class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 						/>
 					{/if}
 				</div>
@@ -121,15 +121,3 @@
 		{/each}
 	</div>
 </div>
-
-<style>
-	input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-
-	input[type='number'] {
-		-moz-appearance: textfield;
-	}
-</style>
