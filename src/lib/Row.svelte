@@ -16,7 +16,6 @@
 		while (expression.match(ID_FORMAT)) {
 			expression = insertFieldValuesIntoExpression(expression);
 			depth++;
-			console.log(`depth: ${depth} expression: ${expression}`);
 
 			if (depth > 100) return "couldn't process, sorry :(";
 		}
@@ -27,9 +26,7 @@
 			.replaceAll('pi', 'Math.PI')
 			.replaceAll('^', '**');
 
-		console.log('final', expression);
-
-		return eval(expression);
+		return String(eval(expression));
 	}
 
 	function insertFieldValuesIntoExpression(expression: string): string {
@@ -54,13 +51,15 @@
 	<div class="flex gap-1 md:w-8/12">
 		{#each data.fields as { label, value, disabled, disabledValue }}
 			{#if typeof value === 'string' && value[0] === '='}
-				{#if label}
-					<span>{label}</span>
-				{/if}
-				<span
-					class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
-					>{calculate(value)}</span
-				>
+				<div class="grid w-full">
+					{#if label}
+						<span class="text-center">{label}</span>
+					{/if}
+					<span
+						class="min-h-9 m-1 box-border block w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
+						>{calculate(value).replace(/(\d+\.\d{2})\d+/, '$1')}</span
+					>
+				</div>
 			{:else if label}
 				<label class="w-full text-center">
 					{label}
