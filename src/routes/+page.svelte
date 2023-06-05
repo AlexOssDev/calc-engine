@@ -26,7 +26,7 @@
 
 <StackList />
 
-<main class="mt-0 md:p-2">
+<main class="mt-0 p-3 md:p-2">
 	{#each $dataStore as stack}
 		<Stack bind:data={stack} />
 	{:else}
