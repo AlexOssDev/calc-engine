@@ -55,12 +55,13 @@
 <div class="mb-4 md:flex md:justify-between md:gap-4">
 	<h3 class="ml-1 text-center text-lg md:my-auto md:text-left">{data.label}</h3>
 
-	<div class="flex gap-1 md:w-8/12">
+	<div class="flex gap-2 md:w-8/12">
 		{#each data.fields as { label, value, disabled, disabledValue }, idx}
 			{#if data.fieldsAreSwappable && idx !== 0}
 				<button
-					class="m-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-transform duration-500 hover:rotate-180 dark:border-slate-900 dark:bg-slate-800"
+					class="my-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-transform duration-500 dark:border-slate-900 dark:bg-slate-800 md:hover:rotate-180"
 					on:click={() => swap(idx, idx - 1)}
+					tabindex="-1"
 				>
 					<IconReplaceFilled />
 				</button>
@@ -71,7 +72,7 @@
 						<span class="text-center">{label}</span>
 					{/if}
 					<span
-						class="m-1 box-border block h-9 w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
+						class="my-1 box-border block h-9 w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
 						>{calculate(value).replace(/(\d+\.\d{2})\d+/, '$1')}</span
 					>
 				</div>
@@ -88,19 +89,19 @@
 							/>
 							<label
 								for={'checkbox' + counter++}
-								class="m-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-sky-400 transition-colors ease-out peer-checked:bg-gray-50 dark:border-slate-900 dark:bg-sky-300 dark:peer-checked:bg-slate-800"
+								class="my-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-sky-400 transition-colors ease-out peer-checked:bg-gray-50 dark:border-slate-900 dark:bg-sky-300 dark:peer-checked:bg-slate-800"
 							/>
 						{/if}
 						{#if disabled}
 							<span
-								class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
+								class="my-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
 								>{disabledValue}</span
 							>
 						{:else}
 							<input
 								type="number"
 								bind:value
-								class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+								class="my-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 							/>
 						{/if}
 					</div>
@@ -116,19 +117,19 @@
 						/>
 						<label
 							for={'checkbox' + counter++}
-							class="m-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-sky-400 transition-colors ease-out peer-checked:bg-gray-50 dark:border-slate-900 dark:bg-sky-300 dark:peer-checked:bg-slate-800"
+							class="my-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-sky-400 transition-colors ease-out peer-checked:bg-gray-50 dark:border-slate-900 dark:bg-sky-300 dark:peer-checked:bg-slate-800"
 						/>
 					{/if}
 					{#if disabled}
 						<span
-							class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
+							class="my-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center text-slate-500 dark:border-slate-900 dark:bg-slate-800"
 							>{disabledValue}</span
 						>
 					{:else}
 						<input
 							type="number"
 							bind:value
-							class="m-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
+							class="my-1 box-border block h-9 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 						/>
 					{/if}
 				</div>
