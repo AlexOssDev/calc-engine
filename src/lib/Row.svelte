@@ -4,6 +4,7 @@
 
 <script lang="ts">
 	import { ID_FORMAT, type IRow, type IStack } from './types';
+	import { IconReplaceFilled } from '@tabler/icons-svelte';
 	import { getFieldsValue } from './utils';
 
 	export let data: IRow;
@@ -59,8 +60,10 @@
 			{#if data.fieldsAreSwappable && idx !== 0}
 				<button
 					class="m-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-transform duration-500 hover:rotate-180 dark:border-slate-900 dark:bg-slate-800"
-					on:click={() => swap(idx, idx - 1)}>{'<->'}</button
+					on:click={() => swap(idx, idx - 1)}
 				>
+					<IconReplaceFilled />
+				</button>
 			{/if}
 			{#if typeof value === 'string' && value[0] === '='}
 				<div class="grid w-full">

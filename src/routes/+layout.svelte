@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { IconBrandGithub } from '@tabler/icons-svelte';
 </script>
 
 <div class="top-0 min-h-screen dark:bg-slate-700 dark:text-slate-200 md:flex md:justify-between">
@@ -8,6 +9,8 @@
 
 <a
 	href="https://github.com/AlexOssDev/calc-engine"
-	class="fixed bottom-0 m-2 text-xl text-transparent outline-none transition-colors hover:text-sky-400 focus:text-emerald-400 hover:dark:text-sky-300 focus:dark:text-emerald-300"
-	>V0.1 on GitHub</a
+	class="fixed bottom-0 flex rounded-lg p-2 text-xl text-transparent outline-none transition-colors hover:bg-white hover:text-sky-400 hover:dark:bg-slate-700 hover:dark:text-sky-300"
 >
+	<IconBrandGithub />
+	v0.1.0-beta
+</a>
