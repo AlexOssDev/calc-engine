@@ -43,13 +43,25 @@
 
 		return finalFunction;
 	}
+
+	function swap(idxA: number, idxB: number) {
+		const tmp = data.fields[idxA].value;
+		data.fields[idxA].value = data.fields[idxB].value;
+		data.fields[idxB].value = tmp;
+	}
 </script>
 
 <div class="mb-4 md:flex md:justify-between md:gap-4">
 	<h3 class="ml-1 text-center text-lg md:my-auto md:text-left">{data.label}</h3>
 
 	<div class="flex gap-1 md:w-8/12">
-		{#each data.fields as { label, value, disabled, disabledValue }}
+		{#each data.fields as { label, value, disabled, disabledValue }, idx}
+			{#if data.fieldsAreSwappable && idx !== 0}
+				<button
+					class="m-1 box-border block aspect-square h-9 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center transition-transform duration-500 hover:rotate-180 dark:border-slate-900 dark:bg-slate-800"
+					on:click={() => swap(idx, idx - 1)}>{'<->'}</button
+				>
+			{/if}
 			{#if typeof value === 'string' && value[0] === '='}
 				<div class="grid w-full">
 					{#if label}
