@@ -16,7 +16,7 @@
 		while (expression.match(ID_FORMAT)) {
 			expression = insertFieldValuesIntoExpression(expression);
 			depth++;
-			console.log(expression, depth);
+			console.log(`depth: ${depth} expression: ${expression}`);
 
 			if (depth > 100) return "couldn't process, sorry :(";
 		}
@@ -41,7 +41,7 @@
 
 		const finalFunction = expression.replace(ID_FORMAT, (_, name) => {
 			const value = fields.find((field) => field.name == name)?.value || 0;
-			return String(value).replace(/^=/m, '');
+			return '(' + String(value).replace(/^=/m, '') + ')';
 		});
 
 		return finalFunction;
