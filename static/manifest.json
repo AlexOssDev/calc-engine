@@ -4,7 +4,7 @@
 	"start_url": "/",
 	"display": "standalone",
 	"description": "A very flexible calculator, more like spreadsheeds actually.",
-	"background_color": "#334155",
+	"background_color": "#fff",
 	"theme_color": "#7dd3fc",
 	"icons": [
 		{
