@@ -15,5 +15,9 @@
 		{#each data.rows as row}
 			<Row bind:data={row} stack={data} />
 		{/each}
+
+		{#if data.description}
+			<pre class="w-full rounded-lg bg-gray-50 p-4 dark:bg-slate-800">{data.description}</pre>
+		{/if}
 	</div>
 {/if}
