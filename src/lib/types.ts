@@ -4,6 +4,7 @@ export interface IStack {
 	name: string;
 	rows: IRow[];
 	hidden?: boolean;
+	description?: string;
 }
 
 export interface IRow {
