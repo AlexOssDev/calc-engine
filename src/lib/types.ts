@@ -19,3 +19,9 @@ export interface IField {
 	disabled?: boolean;
 	disabledValue?: any;
 }
+
+export enum State {
+	Neutral = 'neutral',
+	Success = 'success',
+	Error = 'error'
+}
