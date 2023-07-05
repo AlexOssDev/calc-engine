@@ -1,25 +1,35 @@
 <script lang="ts">
-	import { IconEye, IconEyeOff, IconEyeX, IconSettings } from '@tabler/icons-svelte';
+	import {
+		IconCheck,
+		IconEye,
+		IconEyeOff,
+		IconEyeX,
+		IconSettings,
+		IconX
+	} from '@tabler/icons-svelte';
 	import { dataStore } from './storage';
-	import type { State } from './types';
+	import { State } from './types';
 
 	export let showLabel = true;
 
 	let showModal = true;
 	let showImportInput = false;
 	let importInputData: string;
-	let importInputState: State;
+	let importInputState = State.Neutral;
 
 	function importRawData() {
-		const stack = JSON.parse(importInputData);
-		if ($dataStore.find((item) => item === stack)) return;
-		console.log(`importing \`${importInputData}\``);
+		try {
+			const stack = JSON.parse(importInputData);
+			if ($dataStore.find((item) => item === stack)) return;
+			console.log(`importing \`${importInputData}\``);
 
-		dataStore.push(stack);
+			dataStore.push(stack);
 
-		importInputData = '';
-
-		// TODO: inform the user about the successful import
+			importInputData = '';
+			importInputState = State.Success;
+		} catch {
+			importInputState = State.Error;
+		}
 	}
 </script>
 
@@ -39,10 +49,21 @@
 				class="my-1 box-border block h-96 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 			/>
 			<button
-				class="my-1 box-border block h-9 w-full rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center transition-all focus:border-emerald-400 dark:border-sky-300 dark:bg-slate-800 dark:focus:border-emerald-300"
+				class="my-1 box-border flex h-9 w-full items-center justify-center rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
+				class:border-green-400={importInputState === State.Success}
+				class:dark:border-green-300={importInputState === State.Success}
+				class:border-red-400={importInputState === State.Error}
+				class:dark:border-red-300={importInputState === State.Error}
 				on:click={importRawData}
+				on:blur={() => (importInputState = State.Neutral)}
 			>
-				Import that
+				{#if importInputState === State.Neutral}
+					Import that
+				{:else if importInputState === State.Success}
+					Done <IconCheck />
+				{:else}
+					Invalid <IconX />
+				{/if}
 			</button>
 		{/if}
 	</div>
