@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Settings from '$lib/Settings.svelte';
 	import StackList from '$lib/StackList.svelte';
 	import Stack from '../lib/Stack.svelte';
 	import { dataStore } from '../lib/storage';
@@ -23,6 +24,8 @@
 	parseParams(params);
 	if (params) window.location.search = '';
 </script>
+
+<Settings />
 
 <StackList />
 

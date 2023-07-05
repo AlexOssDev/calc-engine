@@ -45,7 +45,7 @@
 	</div>
 {/if}
 
-<ul class="p-3 pb-0">
+<ul>
 	<li>
 		<button
 			on:click={() => (showImportModal = true)}
