@@ -12,7 +12,7 @@
 
 	export let showLabel = true;
 
-	let showModal = true;
+	let showModal = false;
 	let showImportInput = false;
 	let importInputData: string;
 	let importInputState = State.Neutral;
