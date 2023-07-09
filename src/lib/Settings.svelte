@@ -2,16 +2,14 @@
 	import {
 		IconCheck,
 		IconCode,
-		IconCopy,
 		IconFileExport,
 		IconFileImport,
 		IconFold,
 		IconSettings,
-		IconTerminal,
 		IconX
 	} from '@tabler/icons-svelte';
 	import { dataStore } from './storage';
-	import { State } from './types';
+	import { State, type IStack } from './types';
 
 	export let showLabel = true;
 
@@ -19,6 +17,8 @@
 	let showImportInput = false;
 	let importInputData: string;
 	let importInputState = State.Neutral;
+
+	let selectedStack: IStack;
 
 	function importRawData() {
 		try {
@@ -34,6 +34,11 @@
 			importInputState = State.Error;
 		}
 	}
+
+	function copyStacksJson() {
+		const stack = JSON.stringify(selectedStack);
+		navigator.clipboard.writeText(stack);
+	}
 </script>
 
 {#if showModal}
@@ -45,7 +50,7 @@
 				class="box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 			>
 				Import (JSON)
-				{#if showImportInput}<IconFold />{:else}<IconTerminal />{/if}
+				{#if showImportInput}<IconFold />{:else}<IconCode />{/if}
 			</button>
 			<button
 				on:click={() => (showImportInput = !showImportInput)}
@@ -93,14 +98,16 @@
 		</h2>
 		<select
 			class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			bind:value={selectedStack}
 		>
 			{#each $dataStore as stack}
-				<option value={stack.name}>{stack.name}</option>
+				<option value={stack}>{stack.name}</option>
 			{/each}
 		</select>
 		<div class="flex gap-2">
 			<button
 				class="box-border flex h-9 w-full justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+				on:click={copyStacksJson}
 			>
 				Copy <IconCode />
 			</button>
