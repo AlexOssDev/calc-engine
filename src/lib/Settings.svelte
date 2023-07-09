@@ -103,7 +103,10 @@
 			Export
 		</h2>
 		<div class="flex items-center gap-2">
-			<select class="w-full bg-inherit text-inherit outline-none" bind:value={selectedStack}>
+			<select
+				class="w-full bg-gray-100 text-inherit outline-none dark:bg-slate-700"
+				bind:value={selectedStack}
+			>
 				{#each $dataStore as stack}
 					<option value={stack}>{stack.name}</option>
 				{/each}

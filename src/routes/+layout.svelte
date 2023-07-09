@@ -18,5 +18,5 @@
 	class="fixed bottom-0 flex rounded-lg p-2 text-xl text-transparent outline-none transition-colors hover:bg-white hover:text-sky-400 hover:dark:bg-slate-700 hover:dark:text-sky-300"
 >
 	<IconBrandGithub />
-	v0.2.1
+	v0.2.2
 </a>
