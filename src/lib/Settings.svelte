@@ -13,7 +13,7 @@
 
 	export let showLabel = true;
 
-	let showModal = true;
+	let showModal = false;
 	let showImportInput = false;
 	let importInputData: string;
 	let importInputState = State.Neutral;
@@ -47,7 +47,9 @@
 </script>
 
 {#if showModal}
-	<div class="fixed top-0 flex h-screen w-screen flex-col gap-2 overflow-auto bg-inherit p-3">
+	<div
+		class="fixed top-0 flex h-screen w-screen flex-col gap-2 overflow-auto bg-gray-100 p-3 dark:bg-slate-700 dark:text-slate-200 md:w-fit md:shadow-xl"
+	>
 		<h2 class="text-center text-xl">Import</h2>
 		<div class="flex items-center gap-2">
 			<p class="flex-1">Import stack</p>
@@ -118,15 +120,14 @@
 				<IconFileExport />
 			</button>
 		</div>
-	</div>
-
-	<div class="fixed bottom-0 w-full p-3">
-		<button
-			on:click={closeWindow}
-			class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
-		>
-			Close
-		</button>
+		<div class="absolute bottom-0 left-0 right-0 w-full p-3">
+			<button
+				on:click={closeWindow}
+				class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			>
+				Close
+			</button>
+		</div>
 	</div>
 {:else}
 	<button

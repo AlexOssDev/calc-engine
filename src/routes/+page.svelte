@@ -25,9 +25,11 @@
 	if (params) window.location.search = '';
 </script>
 
-<Settings />
+<menu>
+	<Settings />
 
-<StackList />
+	<StackList />
+</menu>
 
 <main class="mt-0 p-3 md:p-2">
 	{#each $dataStore as stack}
