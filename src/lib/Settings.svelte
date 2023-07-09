@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		IconCheck,
-		IconEye,
-		IconEyeOff,
-		IconEyeX,
-		IconSettings,
-		IconX
-	} from '@tabler/icons-svelte';
+	import { IconCheck, IconFold, IconSettings, IconTerminal, IconX } from '@tabler/icons-svelte';
 	import { dataStore } from './storage';
 	import { State } from './types';
 
@@ -39,8 +32,8 @@
 			on:click={() => (showImportInput = !showImportInput)}
 			class="my-1 box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 		>
-			Import a stack via source code
-			{#if showImportInput}<IconEye />{:else}<IconEyeOff />{/if}
+			Import stack (JSON)
+			{#if showImportInput}<IconFold />{:else}<IconTerminal />{/if}
 		</button>
 		{#if showImportInput}
 			<textarea
@@ -48,23 +41,29 @@
 				placeholder="Paste the raw JSON for a stack here"
 				class="my-1 box-border block h-96 w-full rounded-lg border-2 border-gray-200 bg-gray-50 p-1 transition-colors ease-out focus:border-emerald-400 focus:outline-none dark:border-slate-900 dark:bg-slate-800 dark:focus:border-emerald-300"
 			/>
-			<button
-				class="my-1 box-border flex h-9 w-full items-center justify-center rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
-				class:border-green-400={importInputState === State.Success}
-				class:dark:border-green-300={importInputState === State.Success}
-				class:border-red-400={importInputState === State.Error}
-				class:dark:border-red-300={importInputState === State.Error}
-				on:click={importRawData}
-				on:blur={() => (importInputState = State.Neutral)}
-			>
-				{#if importInputState === State.Neutral}
+
+			{#if importInputState === State.Neutral}
+				<button
+					class="my-1 box-border flex h-9 w-full items-center justify-center rounded-lg border-2 border-sky-400 bg-gray-50 p-1 text-center dark:border-sky-300 dark:bg-slate-800"
+					on:click={importRawData}
+				>
 					Import that
-				{:else if importInputState === State.Success}
+				</button>
+			{:else if importInputState === State.Success}
+				<button
+					class="my-1 box-border flex h-9 w-full items-center justify-center rounded-lg border-2 border-green-400 bg-gray-50 p-1 text-center dark:border-green-300 dark:bg-slate-800"
+					on:click={importRawData}
+				>
 					Done <IconCheck />
-				{:else}
+				</button>
+			{:else}
+				<button
+					class="my-1 box-border flex h-9 w-full items-center justify-center rounded-lg border-2 border-red-400 bg-gray-50 p-1 text-center dark:border-red-300 dark:bg-slate-800"
+					on:click={importRawData}
+				>
 					Invalid <IconX />
-				{/if}
-			</button>
+				</button>
+			{/if}
 		{/if}
 	</div>
 

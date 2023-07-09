@@ -15,7 +15,6 @@ function createStacks() {
 
 	const deleteByName = (data: IStack[], item: IStack, dontSave?: boolean) => {
 		const filtered = data.filter((stack) => {
-			console.log(stack.name, '!=', item.name, 'is', stack.name !== item.name);
 			return stack.name !== item.name;
 		});
 		dontSave || save(filtered);
