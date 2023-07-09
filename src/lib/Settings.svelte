@@ -39,24 +39,28 @@
 		const stack = JSON.stringify(selectedStack);
 		navigator.clipboard.writeText(stack);
 	}
+
+	function closeWindow() {
+		showModal = false;
+		showImportInput = false;
+	}
 </script>
 
 {#if showModal}
 	<div class="fixed top-0 flex h-screen w-screen flex-col gap-2 overflow-auto bg-inherit p-3">
 		<h2 class="text-center text-xl">Import</h2>
-		<div class="flex gap-2">
+		<div class="flex items-center gap-2">
+			<p class="flex-1">Import stack</p>
 			<button
 				on:click={() => (showImportInput = !showImportInput)}
-				class="box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+				class="box-border block h-9 justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 			>
-				Import (JSON)
 				{#if showImportInput}<IconFold />{:else}<IconCode />{/if}
 			</button>
 			<button
 				on:click={() => (showImportInput = !showImportInput)}
-				class="box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+				class="box-border block h-9 justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 			>
-				Import (file)
 				<IconFileImport />
 			</button>
 		</div>
@@ -96,32 +100,29 @@
 		>
 			Export
 		</h2>
-		<select
-			class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
-			bind:value={selectedStack}
-		>
-			{#each $dataStore as stack}
-				<option value={stack}>{stack.name}</option>
-			{/each}
-		</select>
-		<div class="flex gap-2">
+		<div class="flex items-center gap-2">
+			<select class="w-full bg-inherit text-inherit outline-none" bind:value={selectedStack}>
+				{#each $dataStore as stack}
+					<option value={stack}>{stack.name}</option>
+				{/each}
+			</select>
 			<button
-				class="box-border flex h-9 w-full justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+				class="box-border block h-9 justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center active:border-emerald-400 dark:border-slate-900 dark:bg-slate-800 dark:active:border-emerald-300"
 				on:click={copyStacksJson}
 			>
-				Copy <IconCode />
+				<IconCode />
 			</button>
 			<button
-				class="box-border flex h-9 w-full justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+				class="box-border block h-9 justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 			>
-				Export <IconFileExport />
+				<IconFileExport />
 			</button>
 		</div>
 	</div>
 
 	<div class="fixed bottom-0 w-full p-3">
 		<button
-			on:click={() => (showModal = false)}
+			on:click={closeWindow}
 			class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 		>
 			Close
