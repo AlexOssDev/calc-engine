@@ -1,11 +1,21 @@
 <script lang="ts">
-	import { IconCheck, IconFold, IconSettings, IconTerminal, IconX } from '@tabler/icons-svelte';
+	import {
+		IconCheck,
+		IconCode,
+		IconCopy,
+		IconFileExport,
+		IconFileImport,
+		IconFold,
+		IconSettings,
+		IconTerminal,
+		IconX
+	} from '@tabler/icons-svelte';
 	import { dataStore } from './storage';
 	import { State } from './types';
 
 	export let showLabel = true;
 
-	let showModal = false;
+	let showModal = true;
 	let showImportInput = false;
 	let importInputData: string;
 	let importInputState = State.Neutral;
@@ -28,13 +38,23 @@
 
 {#if showModal}
 	<div class="fixed top-0 flex h-screen w-screen flex-col gap-2 overflow-auto bg-inherit p-3">
-		<button
-			on:click={() => (showImportInput = !showImportInput)}
-			class="box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
-		>
-			Import stack (JSON)
-			{#if showImportInput}<IconFold />{:else}<IconTerminal />{/if}
-		</button>
+		<h2 class="text-center text-xl">Import</h2>
+		<div class="flex gap-2">
+			<button
+				on:click={() => (showImportInput = !showImportInput)}
+				class="box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			>
+				Import (JSON)
+				{#if showImportInput}<IconFold />{:else}<IconTerminal />{/if}
+			</button>
+			<button
+				on:click={() => (showImportInput = !showImportInput)}
+				class="box-border flex h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			>
+				Import (file)
+				<IconFileImport />
+			</button>
+		</div>
 		{#if showImportInput}
 			<textarea
 				bind:value={importInputData}
@@ -65,12 +85,37 @@
 				</button>
 			{/if}
 		{/if}
+
+		<h2
+			class="mt-4 border-t-2 pt-2 text-center text-xl dark:border-t-slate-800 md:mt-0 md:border-t-0 md:pt-0"
+		>
+			Export
+		</h2>
+		<select
+			class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+		>
+			{#each $dataStore as stack}
+				<option value={stack.name}>{stack.name}</option>
+			{/each}
+		</select>
+		<div class="flex gap-2">
+			<button
+				class="box-border flex h-9 w-full justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			>
+				Copy <IconCode />
+			</button>
+			<button
+				class="box-border flex h-9 w-full justify-between gap-1 rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			>
+				Export <IconFileExport />
+			</button>
+		</div>
 	</div>
 
 	<div class="fixed bottom-0 w-full p-3">
 		<button
 			on:click={() => (showModal = false)}
-			class="my-1 box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
+			class="box-border block h-9 w-full justify-between rounded-lg border-2 border-gray-200 bg-gray-50 p-1 text-center dark:border-slate-900 dark:bg-slate-800"
 		>
 			Close
 		</button>

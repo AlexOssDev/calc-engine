@@ -7,7 +7,9 @@
 	<title>calculator engine</title>
 </svelte:head>
 
-<div class="top-0 min-h-screen dark:bg-slate-700 dark:text-slate-200 md:flex md:justify-between">
+<div
+	class="top-0 min-h-screen accent-sky-400 dark:bg-slate-700 dark:text-slate-200 dark:accent-sky-300 md:flex md:justify-between"
+>
 	<slot />
 </div>
 

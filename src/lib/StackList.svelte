@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IconEye, IconEyeOff, IconFileImport } from '@tabler/icons-svelte';
+	import { IconEye, IconEyeOff } from '@tabler/icons-svelte';
 	import { dataStore } from './storage';
 
 	$: currentCommonState = $dataStore.map((stack) => stack.hidden).some((hidden) => !hidden);
